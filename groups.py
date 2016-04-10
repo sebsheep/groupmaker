@@ -36,6 +36,15 @@ def nom(student):
 
 def new():
 	fen = Tk()
+	canvas = Canvas(fen, borderwidth=0, background="#ffffff", height=800)
+	frame = Frame(canvas, background="#ffffff")
+	vsb = Scrollbar(fen, orient="vertical", command=canvas.yview)
+	canvas.configure(yscrollcommand=vsb.set)
+	vsb.pack(side="right", fill="y")
+
+	canvas.pack(side="left", fill="both", expand=True)
+	canvas.create_window((4,4), window=frame, anchor="nw")
+
 	check_vars = [IntVar(fen) for _ in range(len(students))]
 	workspace, project, framework = [StringVar(fen) for i in range(3)]
 	def action():
@@ -50,7 +59,7 @@ def new():
 		fen.destroy()
 		refresh()
 	for student, var in zip(students, check_vars):
-		Checkbutton(fen, text=nom(student), variable=var).pack()
+		Checkbutton(frame, text=nom(student), variable=var).pack()
 	Label(fen, text="Workspace:")
 	Entry(fen, textvariable=workspace).pack()
 	Frame(fen, height=1, width=50, bg="black").pack()
