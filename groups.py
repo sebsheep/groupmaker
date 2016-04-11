@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+# prenom.nom@isty.uvsq.fr
+
 from tkinter import *
 import json
 
